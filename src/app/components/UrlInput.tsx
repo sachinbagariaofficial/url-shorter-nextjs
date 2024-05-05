@@ -1,13 +1,14 @@
 "use client";
-
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 const UrlInput = ({ ShortUrlId, setCustomUrlId, customUrlID }: any) => {
   const [urlInput, setUrlInput] = useState<string>("");
+  const [isGenerating, setIsGenerating] = useState<boolean>(false); 
 
   const generateUrl = async () => {
-    if (urlInput.length > 0) {
+    if (urlInput.length > 0 && !isGenerating) {
+      setIsGenerating(true); 
       try {
         const response = await fetch(`https://url-weld.vercel.app/url`, {
           method: "POST",
@@ -20,18 +21,19 @@ const UrlInput = ({ ShortUrlId, setCustomUrlId, customUrlID }: any) => {
         const urlResult = await response.json();
         console.log("urlResult", urlResult);
         if (urlResult.statusCode !== 200) {
-          console.log("first");
-          toast.error(urlResult.message || "Error while shorting url");
+          toast.error(urlResult.message || "Error while shortening URL");
         }
         if (urlResult.urlID) {
           ShortUrlId(urlResult.urlID);
         }
       } catch (err) {
-        toast.error("Please try after");
-        console.log("this is error", err);
+        toast.error("Please try again later");
+        console.log("error", err);
+      } finally {
+        setIsGenerating(false); 
       }
     } else {
-      toast.error("Please enter Url");
+      toast.error("Please enter a URL");
     }
   };
 
@@ -56,7 +58,8 @@ const UrlInput = ({ ShortUrlId, setCustomUrlId, customUrlID }: any) => {
           <div className="absolute right-2 top-[0.4em]">
             <button
               onClick={generateUrl}
-              className="w-14 h-14 rounded-full bg-brand button-custom  group shadow-xl flex items-center justify-center relative overflow-hidden"
+              disabled={isGenerating} 
+              className={`w-14 h-14 rounded-full bg-brand button-custom  group shadow-xl flex items-center justify-center relative overflow-hidden ${isGenerating ? 'cursor-not-allowed bg-disableBrand' : ''}`}
             >
               <svg
                 width="50"

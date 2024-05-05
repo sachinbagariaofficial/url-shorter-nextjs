@@ -16,7 +16,8 @@ const config: Config = {
     },
     colors: {
       brand: "#9334e9",
-      lightGreen: "#ccfbcc"
+      lightGreen: "#ccfbcc",
+      disableBrand:"#c0a6d8"
     }
   },
   plugins: [],
