@@ -9,7 +9,7 @@ const UrlInput = ({ ShortUrlId, setCustomUrlId, customUrlID }: any) => {
   const generateUrl = async () => {
     if (urlInput.length > 0) {
       try {
-        const response = await fetch(`http://localhost:5001/url`, {
+        const response = await fetch(`https://url-weld.vercel.app/url`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

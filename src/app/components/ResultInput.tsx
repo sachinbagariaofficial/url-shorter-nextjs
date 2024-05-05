@@ -13,7 +13,7 @@ const ResultInput = ({ shortUrl }: inputPropsTypes) => {
   const copyFunc = () => {
     setCopyStatus(true);
     toast.success("URL copied successfully!");
-    navigator.clipboard.writeText(`http://localhost:5001/url/${shortUrl}`);
+    navigator.clipboard.writeText(`https://url-weld.vercel.app/url/${shortUrl}`);
     timeIdRef.current = setTimeout(() => {
       setCopyStatus(false);
     }, 3000);
@@ -42,7 +42,7 @@ const ResultInput = ({ shortUrl }: inputPropsTypes) => {
           type="text"
           className="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-m rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-[20px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={
-            shortUrl.length > 0 ? `http://localhost:5001/url/${shortUrl}` : ""
+            shortUrl.length > 0 ? `https://url-weld.vercel.app/url/${shortUrl}` : ""
           }
           disabled
           readOnly
