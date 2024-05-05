@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 import 'react-toastify/dist/ReactToastify.css';
 export const metadata: Metadata = {
   title: "Url Shortner",
-  description: "Create short url",
+  description: "Create short URLs easily with our user-friendly URL Shortener tool. Simplify your links and track their performance with our comprehensive analytics dashboard."
 };
 
 export default function RootLayout({
@@ -16,6 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      
       <body className={inter.className}>{children}</body>
     </html>
   );
